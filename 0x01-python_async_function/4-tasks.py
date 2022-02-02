@@ -9,11 +9,11 @@ task_wait_random = __import__('3-tasks').task_wait_random
 
 async def task_wait_n(n: int,  max_delay: int) -> List[float]:
     """function docs"""
-    done, process = [], []
-    for _ in range(n):
-        task = task_wait_random(max_delay)
-        task.add_done_callback(
-            lambda future_obj: done.append(future_obj.result()))
-        process.append(task)
-    await asyncio.gather(*process)
-    return done
+    d: List[float] = []
+    all: List[float] = []
+    for i in range(n):
+        d.append(task_wait_random(max_delay))
+    for delay in asyncio.as_completed(d):
+        earliest_result = await delay
+        all.append(earliest_result)
+    return all
