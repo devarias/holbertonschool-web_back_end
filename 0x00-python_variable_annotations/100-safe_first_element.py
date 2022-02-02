@@ -3,6 +3,7 @@
 
 from typing import Sequence, Any, Union
 
+
 def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
     """function docs"""
     if lst:
