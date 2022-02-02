@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """module doc"""
 
-from typing import List, Union
+from typing import Tuple, Union
 
 
-def to_kv(k: str, v: Union[int, float]) -> tuple(str, float):
+def to_kv(k: str, v: Union[float, int]) -> Tuple[str, float]:
     """function docs"""
-    return (k, v)
+    return (k, v ** 2)
