@@ -7,7 +7,7 @@ T = TypeVar('T')
 
 
 def safely_get_value(dct: Mapping, key: Any,
-                     default: Union[None, T] = None) -> Union[T, Any]:
+                     default: Union[T, None] = None) -> Union[T, Any]:
     """function docs"""
     if key in dct:
         return dct[key]
