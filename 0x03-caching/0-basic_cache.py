@@ -2,8 +2,10 @@
 """  module docs """
 from base_caching import BaseCaching
 
+
 class BasicCache(BaseCaching):
     """class docs"""
+
     def put(self, key, item):
         """ method docs """
         if key and item:
