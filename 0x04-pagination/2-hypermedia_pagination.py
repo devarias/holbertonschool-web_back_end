@@ -2,7 +2,7 @@
 """ module docs """
 import csv
 from math import floor
-from typing import List
+from typing import Any, Dict, List
 
 
 def index_range(page, page_size):
@@ -42,7 +42,7 @@ class Server:
         pages = self.dataset()
         return pages[start:end]
 
-    def get_hyper(self, page = 1, page_size = 10):
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
         """ method docs """
         assert type(page) == int and page > 0
         assert type(page_size) == int and page_size > 0
