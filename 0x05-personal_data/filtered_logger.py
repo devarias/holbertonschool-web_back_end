@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """ module docs """
-
-from logging import Formatter, LogRecord, INFO
-from logging import Logger, getLogger, StreamHandler
 from typing import List
 import re
+import logging
 import os
 import mysql.connector
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
 
-class RedactingFormatter(Formatter):
+class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
         """
 
@@ -18,11 +16,15 @@ class RedactingFormatter(Formatter):
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ";"
 
-    def __init__(self):
+    def __init__(self, fields: List[str]):
+        """ constructor """
+        self.fields = fields
         super(RedactingFormatter, self).__init__(self.FORMAT)
 
-    def format(self, record: LogRecord) -> str:
-        NotImplementedError
+    def format(self, record: logging.LogRecord) -> str:
+        """ filter values in incoming log records """
+        return filter_datum(self.fields, self.REDACTION,
+                            super().format(record), self.SEPARATOR)
 
 
 def filter_datum(fields: List[str],
@@ -36,12 +38,12 @@ def filter_datum(fields: List[str],
     return message
 
 
-def get_logger() -> Logger:
-    """ returns a logging.Logger object """
-    logger = getLogger("user_data")
-    logger.setLevel(INFO)
+def get_logger() -> logging.Logger:
+    """ method docs """
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
     logger.propagate = False
-    handler = StreamHandler()
+    handler = logging.StreamHandler()
     handler.setFormatter(RedactingFormatter(PII_FIELDS))
     logger.addHandler(handler)
     return logger
@@ -57,7 +59,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
 
 
 def main():
-    """ method docs"""
+    """ method docs """
     db = get_db()
     cursor = db.cursor()
     cursor.execute("SELECT * FROM users;")
@@ -69,8 +71,8 @@ def main():
                   f"ssn={row[3]}; " + \
                   f"password={row[4]};"
         print(message)
-        log_record = LogRecord("my_logger", INFO, None,
-                               None, message, None, None)
+        log_record = logging.LogRecord("my_logger", logging.INFO,
+                                       None, None, message, None, None)
         formatter = RedactingFormatter(PII_FIELDS)
         formatter.format(log_record)
     cursor.close()
