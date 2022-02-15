@@ -13,9 +13,9 @@ class Auth():
         if path[-1] != '/':
             path += '/'
         for items in excluded_paths:
-            new_paths = items.find('*')
-            if items.endswith('*') and items[:new_paths] == path[:items]:
-                return False
+            if items.endswith('*'):
+                if path.startswith(items[:1]):
+                    return False
         if path not in excluded_paths:
             return True
         return False
