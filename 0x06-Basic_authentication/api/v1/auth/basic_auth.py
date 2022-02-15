@@ -2,7 +2,7 @@
 """ module docs """
 from api.v1.auth.auth import Auth
 from base64 import b64decode
-from typing import Tuple, TypeVar
+from typing import TypeVar
 from models.user import User
 
 
@@ -35,7 +35,7 @@ class BasicAuth(Auth):
 
     def extract_user_credentials(self,
                                  decoded_base64_authorization_header: str
-                                 ) -> Tuple(str, str):
+                                 ) -> (str, str):
         """ method docs """
         if decoded_base64_authorization_header is None or \
                 not isinstance(decoded_base64_authorization_header, str) or \
