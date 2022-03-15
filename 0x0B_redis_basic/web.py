@@ -2,11 +2,11 @@
 """ module docs """
 
 from functools import wraps
-from redis import Redis
+import redis
 from requests import get
 from typing import Callable
 
-r = Redis()
+r = redis.Redis()
 
 
 def count_requests(method: Callable) -> Callable:
