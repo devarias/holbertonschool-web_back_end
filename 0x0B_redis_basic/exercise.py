@@ -72,7 +72,7 @@ class Cache:
 
     @call_history
     @count_calls
-    def store(self, data: Union[bytes, float, int, str]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """ method docs """
         random_key = str(uuid4())
         self._redis.set(random_key, data)
@@ -80,7 +80,7 @@ class Cache:
         return random_key
 
     def get(self, key: str,
-            fn: Optional[Callable] = None) -> Union[bytes, float, int, str]:
+            fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
         """ method docs """
         value = self._redis.get(key)
         return fn(value) if fn else value
