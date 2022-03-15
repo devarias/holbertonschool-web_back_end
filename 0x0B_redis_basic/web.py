@@ -28,4 +28,5 @@ def count_requests(method: Callable) -> Callable:
 @count_requests
 def get_page(url: str) -> str:
     """ method docs """
-    return get(url).text
+    response = get(url)
+    return response.text
