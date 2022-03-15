@@ -64,10 +64,9 @@ def replay(fn: Callable):
 class Cache:
     """ class docs """
 
-    _redis = redis.Redis()
-
     def __init__(self) -> None:
         """ constructor docs """
+        _redis = redis.Redis()
         self._redis.flushdb()
 
     @call_history
@@ -76,7 +75,6 @@ class Cache:
         """ method docs """
         random_key = str(uuid4())
         self._redis.set(random_key, data)
-
         return random_key
 
     def get(self, key: str,
