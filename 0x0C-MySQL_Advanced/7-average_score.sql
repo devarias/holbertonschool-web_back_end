@@ -1,5 +1,6 @@
 -- sql script docs
-delimiter / / CREATE PROCEDURE ComputeAverageScoreForUser (IN user_id INT) BEGIN
+delimiter / /
+CREATE PROCEDURE ComputeAverageScoreForUser (IN user_id INT) BEGIN
 UPDATE
 	users
 SET
@@ -15,5 +16,4 @@ WHERE
 	id = user_id;
 
 END;
-
 / /
