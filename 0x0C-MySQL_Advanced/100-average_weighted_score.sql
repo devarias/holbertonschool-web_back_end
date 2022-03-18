@@ -1,6 +1,6 @@
 -- sql script docs
 DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUser;
-DELIMITER / /
+DELIMITER |
 CREATE PROCEDURE ComputeAverageWeightedScoreForUser(
   user_id INT)
 BEGIN
@@ -12,4 +12,4 @@ BEGIN
     WHERE U.id=user_id);
   UPDATE users SET average_score = w_avg_score WHERE id=user_id;
 END;
-/ /
+|
