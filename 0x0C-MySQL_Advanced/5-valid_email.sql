@@ -1,5 +1,5 @@
 -- sql script docs
-delimiter / / CREATE TRIGGER email_validation BEFORE
+delimiter / / CREATE TRIGGER email_bool BEFORE
 UPDATE
 	ON users FOR EACH ROW BEGIN IF NEW.email <> OLD.email THEN
 SET
