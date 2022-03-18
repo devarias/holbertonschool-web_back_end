@@ -1,4 +1,5 @@
 -- sql script docs
+DROP PROCEDURE IF EXISTS ComputeAverageScoreForUser;
 delimiter / /
 CREATE PROCEDURE ComputeAverageScoreForUser (IN user_id INT) BEGIN
 UPDATE
