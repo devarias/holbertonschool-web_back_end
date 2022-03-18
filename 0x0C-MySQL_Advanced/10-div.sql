@@ -1,8 +1,9 @@
 -- sql script docs
-delimiter / /
+DELIMITER |
 DROP FUNCTION IF EXISTS SafeDiv;
 
-CREATE FUNCTION SafeDiv (a INT, b INT) RETURNS FLOAT BEGIN DECLARE result FLOAT;
+CREATE FUNCTION SafeDiv (a INT, b INT)
+RETURNS FLOAT BEGIN DECLARE result FLOAT;
 
 IF b = 0 THEN
 SET
@@ -17,4 +18,4 @@ END IF;
 RETURN result;
 
 END;
-/ /
+|
