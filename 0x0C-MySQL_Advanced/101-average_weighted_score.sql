@@ -1,5 +1,6 @@
 -- sql script docs
-delimiter / / CREATE PROCEDURE ComputeAverageWeightedScoreForUsers() BEGIN
+delimiter |
+CREATE PROCEDURE ComputeAverageWeightedScoreForUsers() BEGIN
 UPDATE
 	users
 SET
@@ -14,5 +15,4 @@ SET
 	);
 
 END;
-
-/ /
+|
