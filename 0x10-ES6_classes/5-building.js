@@ -3,7 +3,7 @@ export default class Building {
     const validation = typeof this.evacuationWarningMessage !== 'function';
     if (this.constructor !== Building && validation) {
       throw Error(
-        'Class extending Building must override evacuationWarningMessage'
+        'Class extending Building must override evacuationWarningMessage',
       );
     }
 
